@@ -13,6 +13,9 @@ app.use(roleRouter)
 const userRouter=require("./routers/routes/user")
 app.use(userRouter)
 
+const taskRouter=require("./routers/routes/task")
+app.use(taskRouter)
+
 const PORT=process.env.PORT;
 app.listen(PORT,()=>{
     console.log(`server on ${PORT}`);

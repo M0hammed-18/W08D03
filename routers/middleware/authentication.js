@@ -4,9 +4,9 @@ const SECRT_KEY=process.env.SECRT_KEY;
 
 const authentication =(req,res,next)=>{
     try {
-        if(!req.headers.authentication)
+        if(!req.headers.authorization)
         return res.status(403).json({message:"forbidden"})
-        const token=req.headers.authentication.split(" ")[1];
+        const token=req.headers.authorization.split(" ")[1];
         const parssedToken=jwt.verify(token,SECRT_KEY);
         req.token=parssedToken;
         next()
