@@ -1,5 +1,7 @@
 const jwt =require("jsonwebtoken");
-require(dotenv.congig())
+const dotenv=require("dotenv");
+
+dotenv.config();
 const SECRT_KEY=process.env.SECRT_KEY;
 
 const authentication =(req,res,next)=>{
@@ -7,7 +9,9 @@ const authentication =(req,res,next)=>{
         if(!req.headers.authorization)
         return res.status(403).json({message:"forbidden"})
         const token=req.headers.authorization.split(" ")[1];
+        // console.log(token);
         const parssedToken=jwt.verify(token,SECRT_KEY);
+        // console.log(parssedToken);
         req.token=parssedToken;
         next()
     }catch(error){

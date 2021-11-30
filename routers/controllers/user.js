@@ -30,7 +30,7 @@ const login=(req,res)=>{
             if(result.email==email){
                 const savePassword= await bcrypt.compare(password,result.password)
                     const payload={
-                        email
+                        role: result.role
                     }
                     if(savePassword){
                         const token =jwt.sign(payload,SECRT_KEY)

@@ -2,11 +2,12 @@ const roleModel=require("./../../db/models/role")
 
 const authorization= async (req,res,next)=>{
     try{
+        console.log(req);
         const roleId=req.token.role;
-
+            console.log(roleId);
         const result=await roleModel.findById(roleId)
-
-        if(result.role==="admin"){
+            console.log(result);
+        if(result.role ==="adminn"){
             next()
         }else{
             return res.status(403).json({massage:"forbidden"})
@@ -16,4 +17,4 @@ const authorization= async (req,res,next)=>{
     }
 }
 
-module.exports=authorization;
+module.exports = authorization
