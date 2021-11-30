@@ -4,11 +4,13 @@ const authentication=require("./../middleware/authentication")
 const authorization=require("./../middleware/authorization")
 const taskRouter = express.Router();
 
-taskRouter.get("/tasks", authentication,authorization,gettask)
+//User
+taskRouter.get("/task/:id",TaskbyId)
 taskRouter.post("/task",createtask)
 
+//Admin
 taskRouter.delete("/del/:id",authentication,authorization,DelTask)
-taskRouter.get("/task/:id",authentication,authorization,TaskbyId)
+taskRouter.get("/tasks", authentication,authorization,gettask)
 taskRouter.delete("/delete/:id",authentication,authorization,deleteTask)
 taskRouter.put("/editTask/:id",authentication,authorization,updateTask)
 
