@@ -39,5 +39,6 @@ const getDelTask=(req,res)=>{
 
 module.exports={
     createtask,
-    gettask
+    gettask,
+    getDelTask
 }
