@@ -1,3 +1,4 @@
+//This File Create To Put CRUD Oprations Depand on userSchema 
 const userModel=require("./../../db/models/user")
 const bcrypt=require("bcrypt")
 const jwt=require("jsonwebtoken")
