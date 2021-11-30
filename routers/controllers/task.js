@@ -10,16 +10,30 @@ const gettask=(req,res)=>{
     };
 
 const createtask=(req,res)=>{
-const {name}=req.body;
-const newRole= new taskModel({
-    name
+const {name,userId,isDelete}=req.body;
+const newtask= new taskModel({
+    name,
+    userId,
 })
 
-newRole.save().then((result)=>{
+newtask.save().then((result)=>{
     res.status(201).json(result)
 }).catch((err)=>{
     res.status(400).json(err);
 })
+}
+
+const getDelTask=(req,res)=>{
+    taskModel
+    .find({}).then((result)=>{
+        console.log(result);
+        result.filter(item=>{
+            if(item.isDelete==true)
+            res.status(200).json(item)
+        })
+    }).catch((err)=>{
+        res.status(400).json(err);
+    })
 }
 
 
