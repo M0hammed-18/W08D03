@@ -23,7 +23,7 @@ newtask.save().then((result)=>{
 })
 }
 
-const getDelTask=(req,res)=>{
+const DelTask=(req,res)=>{
     taskModel
     .find({}).then((result)=>{
         console.log(result);
@@ -36,9 +36,20 @@ const getDelTask=(req,res)=>{
     })
 }
 
+const TaskbyId=(req,res)=>{
+const {id}=req.params;
+console.log(id);
+taskModel.findById(id).exec().then((result)=>{
+    res.status(200).json(result)
+}).catch((err)=>{
+    res.status(400).json(err)
+})
+}
+
 
 module.exports={
     createtask,
     gettask,
-    getDelTask
+    DelTask,
+    TaskbyId
 }
