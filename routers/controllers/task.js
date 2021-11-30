@@ -46,6 +46,17 @@ taskModel.findById(id).exec().then((result)=>{
 })
 }
 
+const deleteTask=(req,res)=>{
+    const {id}=req.paeams;
+    console.log(id);
+
+    taskModel.findByIdAndUpdate(id,{isDelete:true}).exec().then((result)=>{
+        console.log(result);
+        res.status(200).json(result)
+    }).catch((err)=>{
+        res.status(400).json(err)
+    })
+}
 
 module.exports={
     createtask,
