@@ -7,10 +7,10 @@ const taskRouter = express.Router();
 taskRouter.get("/tasks", authentication,authorization,gettask)
 taskRouter.post("/task",createtask)
 
-taskRouter.delete("/del/:id",authentication,DelTask)
-taskRouter.get("/task/:id",authentication,TaskbyId)
-taskRouter.delete("/delete/:id",authentication,deleteTask)
-taskRouter.put("/editTask/:id",authentication,updateTask)
+taskRouter.delete("/del/:id",authentication,authorization,DelTask)
+taskRouter.get("/task/:id",authentication,authorization,TaskbyId)
+taskRouter.delete("/delete/:id",authentication,authorization,deleteTask)
+taskRouter.put("/editTask/:id",authentication,authorization,updateTask)
 
 
 module.exports=taskRouter;
