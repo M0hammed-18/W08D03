@@ -58,10 +58,23 @@ const deleteTask=(req,res)=>{
     })
 }
 
+const updateTask=(req,res)=>{
+    const{id}=req.params;
+    const{name}=req.body;
+    console.log(id);
+
+    taskModel.findByIdAndUpdate(id,{name}).exec().then((result)=>{
+        console.log(result);
+        res.status(200).json(result)
+    }).catch((err)=>{
+        res.status(400).json(err)
+    })
+}
 module.exports={
     createtask,
     gettask,
     DelTask,
     TaskbyId,
-    deleteTask
+    deleteTask,
+    updateTask
 }
