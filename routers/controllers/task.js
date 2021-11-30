@@ -62,5 +62,6 @@ module.exports={
     createtask,
     gettask,
     DelTask,
-    TaskbyId
+    TaskbyId,
+    deleteTask
 }
