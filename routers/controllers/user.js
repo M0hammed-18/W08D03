@@ -8,8 +8,9 @@ const SALT = Number(process.env.SALT);
 const regester = async (req, res) => {
   const { email, password, role } = req.body;
   const saveEmail = email.toLowerCase();
+  console.log(saveEmail);
   const savePassword = await bcrypt.hash(password, SALT);
-
+console.log(savePassword);
   const newUser = new userModel({
     email: saveEmail,
     password: savePassword,

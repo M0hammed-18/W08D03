@@ -8,7 +8,7 @@ const authorization = async (req, res, next) => {
     console.log(roleId);
     const result = await roleModel.findById(roleId);
     console.log(result);
-    if (result.role === "adminn") {
+    if (result.role === "adman") {
       next();
     } else {
       return res.status(403).json({ massage: "forbidden" });

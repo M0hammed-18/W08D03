@@ -18,7 +18,7 @@ taskRouter.post("/task", createtask);
 
 //Admin
 taskRouter.delete("/del/:id", authentication, authorization, DelTask);
-taskRouter.get("/tasks", authentication, authorization, gettask);
+taskRouter.get("/tasks",  gettask);
 taskRouter.delete("/delete/:id", authentication, authorization, deleteTask);
 taskRouter.put("/editTask/:id", authentication, authorization, updateTask);
 
