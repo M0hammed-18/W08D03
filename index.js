@@ -2,7 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 require("./db/index");
 const morgan =require ("morgan")
-const cors=require("cors")
+const cors = require("cors")
 
 dotenv.config();
 

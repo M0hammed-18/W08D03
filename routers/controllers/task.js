@@ -3,7 +3,7 @@ const taskModel = require("./../../db/models/task");
 
 const gettask = (req, res) => {
   taskModel
-    .find({})
+    .find({userId:req.token.id , isDelete:false })
     .then((result) => {
       res.status(200).json(result);
     })
@@ -16,7 +16,7 @@ const createtask = (req, res) => {
   const { name, userId, isDelete } = req.body;
   const newtask = new taskModel({
     name,
-    userId,
+    userId: req.token.id,
   });
 
   newtask
@@ -58,11 +58,11 @@ const TaskbyId = (req, res) => {
 };
 
 const deleteTask = (req, res) => {
-  const { id } = req.paeams;
+  const { id } = req.params;
   console.log(id);
 
   taskModel
-    .findByIdAndUpdate(id, { isDelete: true })
+    .findByIdAndRemove(id)
     .exec()
     .then((result) => {
       console.log(result);

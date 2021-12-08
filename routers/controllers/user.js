@@ -14,7 +14,7 @@ console.log(savePassword);
   const newUser = new userModel({
     email: saveEmail,
     password: savePassword,
-    role,
+    role
   });
   newUser
     .save()
@@ -27,34 +27,47 @@ console.log(savePassword);
 };
 
 const login = (req, res) => {
-  const { email, password } = req.body;
-  const SECRT_KEY = process.env.SECRT_KEY;
+  const {  email, password } = req.body;
 
   userModel
-    .findOne({ email })
+    .findOne({ email } )
     .then(async (result) => {
       if (result) {
+        console.log(result);
+        console.log(email);
         if (result.email == email) {
-          const savePassword = await bcrypt.compare(password, result.password);
+          const secret = process.env.SECRT_KEY;
+          const hashedpass = await bcrypt.compare(password, result.password);
+          // console.log(hashedpass);
+          // console.log(secret);
           const payload = {
             role: result.role,
+            id: result._id,
+            username: result.username,
+            email: result.email,
+            
           };
-          if (savePassword) {
-            const token = jwt.sign(payload, SECRT_KEY);
+          // console.log("afterpayload",result);
+          option = {
+            expiresIn: "6000000m",
+          };
+
+          const token = await jwt.sign(payload, secret, option);
+          // console.log("thistoken",token);
+          if (hashedpass) {
             res.status(200).json({ result, token });
           } else {
-            res.status(400).json("Wrong email or password");
+            res.status(404).json("worng email or password");
           }
         } else {
-          res.status(400).json("Wrong email or password");
+          res.status(404).json("worng email or password");
         }
       } else {
-        res.status(404).json("Email not exist");
+        res.status(400).json("email does not exist");
       }
     })
     .catch((err) => {
-      res.json(err);
+      res.status(400).json(err);
     });
 };
-
 module.exports = { regester, login };

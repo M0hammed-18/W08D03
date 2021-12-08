@@ -14,12 +14,12 @@ const taskRouter = express.Router();
 
 //User
 taskRouter.get("/task/:id", TaskbyId);
-taskRouter.post("/task", createtask);
+taskRouter.post("/task",authentication, createtask);
 
 //Admin
-taskRouter.delete("/del/:id", authentication, authorization, DelTask);
-taskRouter.get("/tasks",  gettask);
-taskRouter.delete("/delete/:id", authentication, authorization, deleteTask);
-taskRouter.put("/editTask/:id", authentication, authorization, updateTask);
+taskRouter.delete("/del/:id", DelTask);
+taskRouter.get("/tasks", authentication, gettask);
+taskRouter.delete("/delete/:id", deleteTask);
+taskRouter.put("/editTask/:id", updateTask);
 
 module.exports = taskRouter;
