@@ -57,3 +57,5 @@ mongoose.connect(DB_URI,options).then(()=>{
 )
 ```
 ![ ER Diagrm ](https://github.com/M0hammed-18/W08D03/blob/main/Digram/ERDiagram.png)
+
+![UML Diagram ](https://github.com/M0hammed-18/W08D03/blob/main/Digram/UML.png)
